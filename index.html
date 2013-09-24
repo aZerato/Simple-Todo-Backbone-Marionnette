@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Backbone TODO</title>
+
+		<!-- jQuery -->
+		<script type="text/javascript" src="./lib/jquery.js"></script>
+
+		<!-- Boostrap -->
+		<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css" />
+
+		<!-- Backbone -->
+		<script type="text/javascript" src="./lib/underscore.js"></script>
+		<script type="text/javascript" src="./lib/backbone.js"></script>
+
+		<!-- Marionnette -->
+		<script type="text/javascript" src="./lib/backbone.marionette.js"></script>
+
+		<link rel="stylesheet" href="./styles/style.css" />
+
+		<!-- Main Backbone -->
+		<script type="text/javascript" src="./scripts/todo-backbone.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var todos = new Todos();
+				TodoApp.start({
+					todos: todos
+				});	
+			});
+		</script>
+
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="navbar-inner">
+	        <div class="container">
+	          <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a href="#" class="brand">Backbone Marionnette Todo</a>
+	          <div class="nav-collapse collapse">
+	            <ul class="nav">
+	              <li class="active"><a href="#">Home</a></li>
+	              <li><a href="#about">About</a></li>
+	              <li><a href="#contact">Contact</a></li>
+	            </ul>
+	          </div><!--/.nav-collapse -->
+	        </div>
+	      </div>
+	    </div>
+
+		<div class="container todoApp">			
+	    </div>
+	</body>
+</html>
+
+<script type="text/template" id="primaryTemplate">
+	<div>
+		<a class="btn btn-primary btn-large" href="#" data-bind="addTodo">Add Todo</a>
+		<a class="btn btn-info btn-large" href="#" data-bind="loadTodos">Load Todos</a>
+		<a class="btn btn-danger btn-large" href="#" data-bind="saveTodos">Save Todos</a>
+		<a class="btn btn-warning btn-large" href="#" data-bind="clearTodos">Clear Todos</a>
+	</div>
+	<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Content</th>
+          <th>State</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody data-collection="todos">
+
+      </tbody>
+    </table>   
+</script>
+
+<script type="text/template" id="itemTemplate">
+	<td><span><%= id %></span></td>
+	<td><input type="text" data-bind="content" value="<%= content %>"/></td>
+	<td><input type="checkbox" data-bind="state" <%= state ? 'checked="checked"' : '' %>/></td>
+	<td><a class="btn btn-danger" data-bind="removeTodo">Remove</a></td>
+</script>
+
+
+<script type="text/template" id="layoutTemplate">
+	<div class="hero-unit">
+        <h1>Backbone Marionnette Todo !</h1>
+        <p>Sample of a todo List with BackboneJS, Marionnette & LocalStorage</p>
+  	</div>
+
+	<div id="main"></div>
+
+    <div class="footer">
+		<p>&copy; Todo Company 2013</p>
+	</div>
+</script>
